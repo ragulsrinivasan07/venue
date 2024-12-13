@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .venue-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .venue-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .venue-item:hover {
+            transform: scale(1.05);
+        }
+        .venue-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .venue-info {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Venues Dashboard</h1>
+    <div class="venue-list">
+        {% for venue in venues %}
+            <div class="venue-item" onclick="window.location.href='/venue/{{ venue.id }}'">
+                <img src="http://127.0.0.1:8000{{ venue.image }}" alt="{{ venue.name }}" class="venue-image">
+                <div class="venue-info">
+                    <h3>{{ venue.name }}</h3>
+                    <p><strong>Review:</strong> {{ venue.review }}</p>
+                    <p><strong>Description:</strong> {{ venue.description[:50] }}...</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
