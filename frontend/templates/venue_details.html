@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ venue.name }} Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .venue-details {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        .venue-image {
-            width: 400px;
-            height: 300px;
-            object-fit: cover;
-        }
-        .venue-info {
-            margin-top: 20px;
-        }
-    </style>
+    <title>{{ venue.name }} - Venue Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="venue-details">
-        <img src="http://127.0.0.1:8000{{ venue.image }}" alt="{{ venue.name }}" class="venue-image">
-        <div class="venue-info">
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="venue-details">
             <h1>{{ venue.name }}</h1>
-            <p><strong>Review:</strong> {{ venue.review }}</p>
+            <img src="http://127.0.0.1:8000{{ venue.image }}" alt="{{ venue.name }}" class="venue-image">
+            <p><strong>Price:</strong> {{ venue.price }}</p>
             <p><strong>Description:</strong> {{ venue.description }}</p>
-        </div>
-    </div>
+            <p><strong>Location:</strong> {{ venue.location }}</p>
+            <p><strong>Capacity:</strong> {{ venue.capacity }}</p>
+
+            <button>Book Now</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Venue Booking. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

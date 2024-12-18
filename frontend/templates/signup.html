@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Sign Up</button>
-    </form>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-container">
+            <h1>Sign Up</h1>
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username" required><br>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Venue Booking. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

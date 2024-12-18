@@ -114,5 +114,16 @@ def signup():
     
     return render_template('signup.html')
 
+@app.route('/profile')
+def profile():
+    # Simulating user data from the database (this should be dynamically fetched)
+    user_data = {
+        'name': 'John Doe',
+        'email': 'johndoe@example.com',
+        'joined': '2023-05-01',
+        'profile_picture': 'profile.jpg'
+    }
+    return render_template('profile.html', user=user_data)
+
 if __name__ == '__main__':
     app.run(debug=True)

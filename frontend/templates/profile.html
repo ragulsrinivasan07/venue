@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-container">
+            <div class="profile-header">
+                <img src="{{ url_for('static', filename='images/' + user.profile_picture) }}" alt="Profile Picture" class="profile-img">
+                <div class="user-details">
+                    <h1>{{ user.name }}</h1>
+                    <p class="user-email">{{ user.email }}</p>
+                    <p class="user-joined">Joined: {{ user.joined }}</p>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="edit-btn">Edit Profile</button>
+                <button class="change-password-btn">Change Password</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Venue Booking. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

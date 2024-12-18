@@ -3,49 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .venue-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .venue-item {
-            border: 1px solid #ccc;
-            padding: 15px;
-            width: 250px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .venue-item:hover {
-            transform: scale(1.05);
-        }
-        .venue-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .venue-info {
-            padding-top: 10px;
-        }
-    </style>
+    <title>Venue Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
 </head>
 <body>
-    <h1>Venues Dashboard</h1>
-    <div class="venue-list">
-        {% for venue in venues %}
-            <div class="venue-item" onclick="window.location.href='/venue/{{ venue.id }}'">
-                <img src="http://127.0.0.1:8000{{ venue.image }}" alt="{{ venue.name }}" class="venue-image">
-                <div class="venue-info">
-                    <h3>{{ venue.name }}</h3>
-                    <p><strong>Review:</strong> {{ venue.review }}</p>
-                    <p><strong>Description:</strong> {{ venue.description[:50] }}...</p>
-                </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
             </div>
-        {% endfor %}
-    </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Find the Perfect Venue for Your Event</h1>
+            <input type="text" id="search-input" placeholder="Search for venues..." onkeyup="searchVenues()">
+            <select id="venue-type">
+                <option value="">All Types</option>
+                <option value="sport">Sport</option>
+                <option value="function">Function</option>
+                <option value="formal meeting">Formal Meeting</option>
+                <option value="hotel">Hotel</option>
+            </select>
+            <button onclick="searchVenues()">Search</button>
+            <div id="suggestions"></div>
+        </section>
+
+        <section class="venues">
+            <h2>Featured Venues</h2>
+            <div class="venue-list" id="venue-list">
+                <!-- Venue cards will be dynamically added here based on search -->
+                {% for venue in venues %}
+                    <div class="venue-card">
+                        <img src="http://127.0.0.1:8000{{ venue.image }}" alt="{{ venue.name }}" class="venue-image">
+                        <h3>{{ venue.name }}</h3>
+                        <p>{{ venue.price }}</p>
+                        <a href="/venue/{{ venue.id }}">
+                            <button>Book Now</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Venue Booking. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function searchVenues() {
+            const query = $('#search-input').val();
+            const type = $('#venue-type').val();
+
+            $.ajax({
+                url: '/search',
+                method: 'GET',
+                data: { query: query, type: type },
+                success: function(data) {
+                    $('#venue-list').html('');
+                    data.forEach(function(venue) {
+                        $('#venue-list').append(`
+                            <div class="venue-card">
+                                <img src="http://127.0.0.1:8000${venue.image}" alt="${venue.name}" class="venue-image">
+                                <h3>${venue.name}</h3>
+                                <p>${venue.price}</p>
+                                <a href="/venue/${venue.id}">
+                                    <button>Book Now</button>
+                                </a>
+                            </div>
+                        `);
+                    });
+                }
+            });
+        }
+
+        // Real-time search suggestion
+        $('#search-input').on('input', function() {
+            const query = $(this).val();
+            if (query) {
+                $.ajax({
+                    url: '/search',
+                    method: 'GET',
+                    data: { query: query, type: '' },
+                    success: function(data) {
+                        let suggestions = '<ul>';
+                        data.forEach(function(venue) {
+                            suggestions += `<li>${venue.name}</li>`;
+                        });
+                        suggestions += '</ul>';
+                        $('#suggestions').html(suggestions);
+                    }
+                });
+            } else {
+                $('#suggestions').html('');
+            }
+        });
+    </script>
 </body>
 </html>

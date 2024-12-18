@@ -1,0 +1,275 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+header {
+    background-color: #111;
+    color: white;
+    padding: 15px 20px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo img {
+    width: 120px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+}
+
+header ul li {
+    margin: 0 15px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero input, .hero select, .hero button {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    width: 250px;
+    border: 1px solid #666;
+    background-color: #444;
+    color: white;
+}
+
+.hero button {
+    background-color: #007aff;
+    border: none;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #005bb5;
+}
+
+/* Suggestions */
+#suggestions {
+    background-color: #333;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+#suggestions li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#suggestions li:hover {
+    background-color: #444;
+}
+
+/* Featured Venues */
+.venues {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.venues h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.venue-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.venue-card {
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.venue-card:hover {
+    transform: scale(1.05);
+}
+
+.venue-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.venue-card h3 {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.venue-card p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #bbb;
+}
+
+.venue-card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.venue-card button:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+}
+
+header nav .logo img {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+}
+
+header nav ul {
+    list-style-type: none;
+    float: right;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+    
+.venue-image {
+    width: 100%;
+    max-width: 300px; /* Adjust this based on your design needs */
+    height: auto;
+    object-fit: cover; /* Ensures the image fills its container without distortion */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}
